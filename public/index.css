@@ -9,4 +9,13 @@
 .header div {
     width: 33%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px lightblue;
+    transition: linear .5s;
+    margin: 10px;
+}
+.header div:hover{
+    background-color: lightgray;
 }

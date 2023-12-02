@@ -5,7 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const app = express();
 const port = 4000;
-
+const spans = require('./routes/spans')
 const config = require('./config/db');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -22,6 +22,8 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
     console.log("Мы не подключились к бд: " + err);
 });
+
+app.use('/spans', spans);
 
 app.listen(port, () => {
     console.log("Сервер был запущен по порту: " + port);
