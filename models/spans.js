@@ -1,13 +1,10 @@
 const mongoose = require('mongoose');
 
 const SpanSchema = mongoose.Schema({
-    name: {type: String},
-    id: {type: Number},
-    timeStart: {type: Number},
-    timeEnd: {type: Number}
+    req: {}
 });
 
-const Program = module.exports = mongoose.model('spans'/*имя таблицы в бд*/, SpanSchema);
+const Spans = module.exports = mongoose.model('spans'/*имя таблицы в бд*/, SpanSchema);
 
 module.exports.RecordSpan = function (newSpan, callback) {
     newSpan.save().then(function (result) {
@@ -17,8 +14,8 @@ module.exports.RecordSpan = function (newSpan, callback) {
     });
 }
 
-module.exports.removeLogin = function (login, callback) {
-    Program.findOneAndRemove({login: login}).then(function (result) {
+module.exports.GetSpan = function (id, callback){
+    Spans.findById(id).then(function (result){
         callback(null, result);
     }).catch(function (err) {
         callback(err, null);
